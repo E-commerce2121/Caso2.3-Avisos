@@ -1,0 +1,16 @@
+{
+  "name": "sistema-casos-bloque2",
+  "version": "1.0.0",
+  "description": "Sistema de 3 casos: Transferencias, Gimnasio y Avisos de Stock",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "sql.js": "^1.14.1"
+  }
+}
