@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso 2.3 — Avisos de Stock</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <header>
+    <div class="logo">SistemaCasos <span>/ Avisos Stock</span></div>
+    <nav>
+      <a href="/transferencia/transferencias.html" class="nav-btn">💸 Caso 2.1 <span class="badge">Transferencia</span></a>
+      <a href="/gimnasio/gimnasio.html" class="nav-btn">🏋️ Caso 2.2 <span class="badge">Gimnasio</span></a>
+      <a href="/avisos/avisos.html" class="nav-btn active">📦 Caso 2.3 <span class="badge">Stock</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-panel active" id="caso23">
+      <div class="panel-header">
+        <h2>Caso 2.3 — Aviso de Stock</h2>
+        <p>El sistema envía el aviso al cliente que primero está en la fila. Si la posición actual es mayor a la anterior, avanzó.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>📬 Suscribirse / Actualizar posición</h3>
+          <div class="field">
+            <label>Correo de aviso</label>
+            <input type="email" id="a-correo" placeholder="ej: cliente@email.com" autocomplete="off">
+          </div>
+          <div class="field">
+            <label>Posición actual en la tabla de avisos</label>
+            <input type="number" id="a-posicion" placeholder="ej: 3" min="1">
+          </div>
+          <button class="btn btn-primary" onclick="agregarAviso()" style="margin-bottom:0.5rem;">📋 Agregar / Actualizar en cola</button>
+          <div class="result-box" id="a-result"></div>
+        </div>
+
+        <div class="card">
+          <h3>⏳ Cola de avisos activa</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">El primero (posición más alta) recibirá el aviso</p>
+          <div class="cola-visualizer" id="cola-visualizer">
+            <div class="cola-empty">Cola vacía</div>
+          </div>
+          <hr class="divider">
+          <button class="btn btn-success" onclick="procesarAviso()">🚀 Procesar: enviar aviso al primero</button>
+          <button class="btn btn-ghost" style="margin-top:0.5rem;" onclick="limpiarCola()">🗑 Limpiar toda la cola</button>
+          <div class="result-box" id="proc-result"></div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:1.5rem;">
+        <div class="full-col card">
+          <h3>📜 Log de avisos enviados</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Correo</th>
+                  <th>Mensaje</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="a-log">
+                <tr><td colspan="4" style="color:var(--text-dim);text-align:center;padding:2rem;">Sin avisos enviados aún</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-ghost" style="margin-top:1rem;" onclick="cargarLogAvisos()">🔄 Actualizar</button>
+        </div>
+
+        <div class="full-col card">
+          <h3>📋 Capas del caso</h3>
+          <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.8;">
+            <b style="color:var(--text);">1. Capa de Interfaz</b><br>Acción: envía correo con alerta<br><br>
+            <b style="color:var(--text);">2. Capa Lógica</b><br>Validación: el aviso está más arriba en la tabla → se envía primero<br><br>
+            <b style="color:var(--text);">3. Capa de Persistencia</b><br>Busca enviar el aviso al cliente primero en la fila<br><br>
+            <b style="color:var(--text);">4. Retorno</b><br>✅ Si está primero: "Enviado correctamente"<br>⏳ Si no: "Continúe esperando"
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="js/avisos.js"></script>
+</body>
+</html>
